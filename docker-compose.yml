@@ -1,0 +1,19 @@
+node:
+  build: .
+  command: node ./bin/www DEBUG=pd-prayer-tracker:*
+  environment:
+    NODE_ENV: staging
+  ports:
+    - '3000:3000'
+  volumes:
+    - .:/home/app/pd-prayer-tracker
+    - /home/app/pd-prayer-tracker/node_modules
+  links:
+   - mongo
+mongo:  
+  image: mongo
+  volumes_from:
+    - pd-prayer-tracker_mongo_data
+  ports:
+    - "27017"
+  command: --smallfiles #--rest --auth

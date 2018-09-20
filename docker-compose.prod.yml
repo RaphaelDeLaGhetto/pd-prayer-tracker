@@ -1,0 +1,36 @@
+nginx:
+  image: nginx
+  restart: always
+  environment:
+    - VIRTUAL_HOST=example.com
+    - LETSENCRYPT_HOST=example.com
+    - LETSENCRYPT_EMAIL=missionary@example.com
+  volumes:
+    - ./config/nginx.conf:/etc/nginx/nginx.conf
+  links:
+    - node-app:node-app
+  log_opt:
+    max-size: 1m
+node-app:
+  build: .
+  restart: always
+  command: node ./bin/www
+  environment:
+    NODE_ENV: production
+  ports:
+    - '3000'
+  volumes:
+    - .:/home/app/pd-prayer-tracker
+    - /home/app/pd-prayer-tracker/node_modules
+    - ./uploads:/home/app/pd-prayer-tracker/uploads
+    - /tmp:/tmp
+  links:
+   - mongo
+mongo:  
+  image: mongo
+  restart: always
+  volumes_from:
+    - pd-prayer-tracker_mongo_data
+  ports:
+    - "27017"
+  command: --smallfiles #--rest --auth
