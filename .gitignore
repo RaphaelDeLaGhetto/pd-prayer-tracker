@@ -1,0 +1,7 @@
+*.sw*
+node_modules
+*.sqlite
+uploads
+.env
+*.tar*
+
