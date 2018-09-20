@@ -1,0 +1,28 @@
+{
+  "development": {
+    "username": "pd-prayer-tracker",
+    "password": "secret",
+    "database": "pd-prayer-tracker_development",
+    "host": "localhost"
+  },
+  "test": {
+    "username": "pd-prayer-tracker",
+    "password": "secret",
+    "database": "pd-prayer-tracker_test",
+    "host": "localhost"
+  },
+  "staging": {
+    "username": "pd-prayer-tracker",
+    "password": "secret",
+    "database": "pd-prayer-tracker_staging",
+    "host": "mongo",
+    "dialect": "mongodb"
+  },
+  "production": {
+    "username": "pd-prayer-tracker",
+    "password": "secret",
+    "database": "pd-prayer-tracker_production",
+    "host": "mongo",
+    "dialect": "mongodb"
+  }
+}
