@@ -1,0 +1,21 @@
+{
+  "name": "pd-account-tracker",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node app.js",
+    "test": "NODE_ENV=test node_modules/.bin/jasmine"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "dotenv": "^6.0.0",
+    "mongoose": "^5.2.16",
+    "mongoose-currency": "^0.2.0",
+    "mongoose-findorcreate": "^3.0.0",
+    "mongoose-unique-validator": "^2.0.2"
+  },
+  "devDependencies": {
+    "jasmine": "^3.2.0",
+    "pow-mongoose-fixtures": "^0.3.0",
+    "zombie": "^6.1.3"
+  }
+}
