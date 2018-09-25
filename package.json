@@ -8,6 +8,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "dotenv": "^6.0.0",
+    "express": "^4.16.3",
     "mongoose": "^5.2.16",
     "mongoose-currency": "^0.2.0",
     "mongoose-findorcreate": "^3.0.0",
