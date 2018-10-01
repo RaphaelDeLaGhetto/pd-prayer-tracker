@@ -13,6 +13,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "method-override": "^3.0.0",
     "mongoose": "^5.2.16",
     "mongoose-currency": "^0.2.0",
     "mongoose-findorcreate": "^3.0.0",
