@@ -6,7 +6,6 @@ const models = require('../../models');
 const app = require('../../app'); 
 const path = require('path');
 
-// Test server is started in `features/startTestServerSpec.js`
 Browser.localhost('example.com', 3001);
 
 // For when system resources are scarce
