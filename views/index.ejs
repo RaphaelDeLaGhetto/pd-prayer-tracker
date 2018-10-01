@@ -1,0 +1,20 @@
+<% include _partials/header %>
+  <% include _partials/messages %>
+  
+  <% if (!agent) { %>
+    <% include _partials/login %>
+
+  <% } else { %>
+    <% if (agent.partners.length) { %>
+      <details>
+        <summary id="partners">Prayer Partners</summary>
+        <section>
+          <% for (partner of agent.partners) { %>
+            <%- include('partner/partner', { partner: partner }) %>
+          <% } %>
+        </section>
+      </details>
+    <% } %>
+  <% } %>
+
+<% include _partials/footer %>
