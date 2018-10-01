@@ -17,6 +17,7 @@
     "mongoose-currency": "^0.2.0",
     "mongoose-findorcreate": "^3.0.0",
     "mongoose-unique-validator": "^2.0.2",
+    "nodemailer": "^4.6.8",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
   },
