@@ -6,6 +6,11 @@
 
   <% } else { %>
     <% if (agent.partners.length) { %>
+      <form id="new-partner-form" role="form" action="/partner" method="post">
+        <input type="text" name="name" placeholder="My New Partner">
+        <input type="email" name="email" placeholder="partner@example.com">
+        <input type="submit" value="Add New">
+      </form>
       <details>
         <summary id="partners">Prayer Partners</summary>
         <section>
