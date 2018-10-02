@@ -23,7 +23,9 @@ module.exports = function(mongoose) {
     },
     name: {
       type: Types.String,
-      trim: true
+      trim: true,
+      required: [true, 'No name supplied'],
+      empty: [false, 'No name supplied'],
     },
     donations: [Donation],
     notes: [new Schema({ text: Types.String}, { timestamps: true })],

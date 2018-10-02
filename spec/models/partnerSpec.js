@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Partner', function() {
+describe('Partner', () => {
   const db = require('../../models');
   const Partner = db.Partner;
 
@@ -15,7 +15,7 @@ describe('Partner', function() {
   beforeEach(done => {
     required = {
       email: 'someguy@example.com',
-      name: undefined 
+      name: 'Some Guy' 
     };
  
     partner = new Partner(required);
@@ -34,14 +34,14 @@ describe('Partner', function() {
  
   describe('basic validation', () => {
 
-    it('sets the createdAt and updatedAt fields', (done) => {
+    it('sets the createdAt and updatedAt fields', done => {
       expect(partner.createdAt).toBe(undefined);
       expect(partner.updatedAt).toBe(undefined);
-      partner.save().then((obj) => {
+      partner.save().then(obj => {
         expect(partner.createdAt instanceof Date).toBe(true);
         expect(partner.updatedAt instanceof Date).toBe(true);
         done();
-      }).catch((error) => {
+      }).catch(error => {
         done.fail(error);
       });
     });
@@ -53,9 +53,9 @@ describe('Partner', function() {
       expect(partner).toEqual(jasmine.objectContaining(required));
     });
 
-    it('does not allow an empty email field', (done) => {
+    it('does not allow an empty email field', done => {
       required.email = '   ';
-      Partner.create(required).then((obj) => {
+      Partner.create(required).then(obj => {
         done.fail('This should not have saved');
       }).catch((error) => {
         expect(Object.keys(error.errors).length).toEqual(1);
@@ -71,6 +71,28 @@ describe('Partner', function() {
       }).catch((error) => {
         expect(Object.keys(error.errors).length).toEqual(1);
         expect(error.errors['email'].message).toEqual('No email supplied');
+        done();
+      });
+    });
+
+    it('does not allow an empty name field', done => {
+      required.name = '   ';
+      Partner.create(required).then(obj => {
+        done.fail('This should not have saved');
+      }).catch(error => {
+        expect(Object.keys(error.errors).length).toEqual(1);
+        expect(error.errors['name'].message).toEqual('No name supplied');
+        done();
+      });
+    });
+
+    it('does not allow an undefined name field', (done) => {
+      delete required.name;
+      Partner.create(required).then((obj) => {
+        done.fail('This should not have saved');
+      }).catch((error) => {
+        expect(Object.keys(error.errors).length).toEqual(1);
+        expect(error.errors['name'].message).toEqual('No name supplied');
         done();
       });
     });
