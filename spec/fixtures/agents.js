@@ -16,7 +16,7 @@ exports.Agent = {
     _id: new ObjectId(),
     email: 'manny@example.com',
     password: 'topsecret',
-    partners: [partners.horst]
+    partners: [partners.horst, partners.ben, partners.vincent]
   },
   lanny: {
     _id: new ObjectId(),
