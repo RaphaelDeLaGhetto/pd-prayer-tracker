@@ -169,7 +169,7 @@ describe('Agent', () => {
   describe('relationships', () => {
     it('includes having many partners', done => {
       agent.save().then(results => {
-        db.Partner.create({ email: 'generous@donor.com' }).then((p1) => {
+        db.Partner.create({ email: 'generous@donor.com', name: 'Benny S' }).then((p1) => {
           expect(agent.partners.length).toEqual(0);
           agent.partners.push(p1);
           agent.update().then(() => {
@@ -179,7 +179,7 @@ describe('Agent', () => {
               expect(agent.partners[0].email).toEqual(p1.email);
 
               // Add another partner
-              db.Partner.create({ email: 'another@donor.com' }).then((p2) => {
+              db.Partner.create({ email: 'another@donor.com', name: 'Garth W' }).then((p2) => {
                 expect(agent.partners.length).toEqual(1);
                 agent.partners.push(p2);
                 agent.update().then(() => {
@@ -209,10 +209,10 @@ describe('Agent', () => {
     });
 
     it('does not allow two partners with the same email', done => {
-      agent.partners.push({ email: 'horst@example.com'});
+      agent.partners.push({ email: 'horst@example.com', name: 'Horst A' });
       agent.save().then(results => {
 
-        agent.partners.push({ email: 'horst@example.com'});
+        agent.partners.push({ email: 'horst@example.com', name: 'Horst B'});
         agent.save().then(result => {
           done.fail('This should not allow two partners with the same email');
         }).catch(error => {
@@ -224,18 +224,18 @@ describe('Agent', () => {
       });
     });
 
-    it('does not save two partners with the same email the agent\'s partner list', done => {
+    it('does not save two partners with the same email in the agent\'s partner list', done => {
       db.Agent.findById(agent._id).then(results => {
         expect(results).toBeNull();
 
-        agent.partners.push({ email: 'horst@example.com'});
+        agent.partners.push({ email: 'horst@example.com', name: 'Horst A'});
         agent.save().then(results => {
   
           db.Agent.findById(agent._id).then(results => {
             expect(results.partners.length).toEqual(1);
 
             // Add double
-            agent.partners.push({ email: 'horst@example.com'});
+            agent.partners.push({ email: 'horst@example.com', name: 'Horst B' });
             agent.save().then(result => {
               done.fail('This should not allow two partners with the same email');
             }).catch(error => {
@@ -265,14 +265,14 @@ describe('Agent', () => {
       db.Partner.find().then(results => {
         expect(results.length).toEqual(0);
 
-        agent.partners.push({ email: 'horst@example.com'});
+        agent.partners.push({ email: 'horst@example.com', name: 'Horst A' });
         agent.save().then(results => {
   
           db.Partner.find().then(results => {
             expect(results.length).toEqual(0);
 
             // Add double
-            agent.partners.push({ email: 'horst@example.com'});
+            agent.partners.push({ email: 'horst@example.com', name: 'Horst B'});
             agent.save().then(result => {
               done.fail('This should not allow two partners with the same email');
             }).catch(error => {
