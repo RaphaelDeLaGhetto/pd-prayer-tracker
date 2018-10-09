@@ -33,7 +33,7 @@ describe('authentication', () => {
   });
 
   it('shows the home page', () => {
-    browser.assert.text('h1', 'PD Prayer Tracker');
+    browser.assert.text('h1', 'Prayer Chain');
   });
 
   it('displays the login form if not logged in', () => {
@@ -52,7 +52,7 @@ describe('authentication', () => {
     expect(browser.queryAll('.partner').length).toEqual(0);
   });
 
-  describe('login process', () => {
+  describe('successful login', () => {
 
     let agent;
     beforeEach((done) => {
@@ -96,5 +96,75 @@ describe('authentication', () => {
           });
       });
     });
+  });
+
+  describe('unsuccessful login for registered agent', () => {
+
+    let agent;
+    beforeEach((done) => {
+      fixtures.load(__dirname + '/../fixtures/agents.js', models.mongoose, (err) => {
+        models.Agent.findOne({ email: 'danny@example.com' }).then((results) => {
+          agent = results;
+
+          browser.fill('email', agent.email);
+          browser.fill('password', 'wrong');
+          browser.pressButton('Login', (err) => {
+            if (err) return done.fail(err);
+            browser.assert.success();
+            done();
+          });
+        });
+      });
+    });
+
+    it('populates the email field in login', (done) => {
+      done.fail();
+    });
+
+    it('displays the login form', () => {
+      browser.assert.element("form[action='/login']");
+    });
+
+    it('displays an authentication failed message', () => {
+      browser.assert.text('.alert.alert-danger', 'Login failed');
+    });
+
+    it('does not display partner prayer history', () => {
+      expect(agent.partners.length > 0).toBe(true);
+      browser.assert.elements('#partners', 0);
+    });
+
+  });
+
+  describe('unsuccessful login for unknown agent', () => {
+
+    beforeEach((done) => {
+      browser.fill('email', 'nosuchagent@example.com');
+      browser.fill('password', 'wrong');
+      browser.pressButton('Login', (err) => {
+        if (err) {
+          return done.fail(err);
+        }
+        browser.assert.success();
+        done();
+      });
+    });
+
+    it('populates the email field in login', (done) => {
+      done.fail();
+    });
+
+    it('displays the login form', () => {
+      browser.assert.element("form[action='/login']");
+    });
+
+    it('displays an authentication failed message', () => {
+      browser.assert.text('.alert.alert-danger', 'Login failed');
+    });
+
+    it('does not display partner prayer history', () => {
+      browser.assert.elements('#partners', 0);
+    });
+
   });
 });
