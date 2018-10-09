@@ -33,7 +33,9 @@ router.post('/', (req, res) => {
  * GET /partner/:id
  */
 router.get('/:id', (req, res) => {
-  if (!req.isAuthenticated()) { return res.sendStatus(401); }
+  if (!req.isAuthenticated()) { 
+    return res.redirect('/');
+  }
 
   models.Agent.findById(req.user._id).then(agent => {
     const partner = agent.partners.id(req.params.id);
