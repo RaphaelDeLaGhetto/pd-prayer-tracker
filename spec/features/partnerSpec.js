@@ -60,13 +60,15 @@ describe("GET '/'", () => {
      * GET /partner/:id
      */
     it('does not allow viewing partners', (done) => {
-      request(app)
-        .get('/partner/123')
-        .end((err, res) => {
-          if (err) return done.fail(err);
-          expect(res.status).toEqual(401);
-          done();
-        });
+      browser.visit('/partner/123', (err) => {
+        if (err) done.fail(err);
+        browser.assert.success();
+        browser.assert.redirected();
+        browser.assert.url('/');
+        browser.assert.text('.alert.alert-info', 'Login first');
+
+        done();
+      });
     });
   });
 

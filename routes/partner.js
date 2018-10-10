@@ -34,6 +34,7 @@ router.post('/', (req, res) => {
  */
 router.get('/:id', (req, res) => {
   if (!req.isAuthenticated()) { 
+    req.flash('info', 'Login first');
     return res.redirect('/');
   }
 
