@@ -38,9 +38,7 @@ router.get('/:id', (req, res) => {
     return res.redirect('/');
   }
 
-  const partner = req.user.partners.find(partner => {
-    return partner._id.toString() === req.params.id;
-  });
+  const partner = req.user.partners.find(partner => partner._id.toString() === req.params.id);
 
   if (!partner) {
     req.flash('error', 'That partner does not exist');
