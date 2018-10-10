@@ -93,16 +93,28 @@ describe("GET '/partner/:id'", () => {
       });
     });
 
-    it('correctly renders the partner show view', done => {
-      browser.clickLink(agent.partners[0].name, err => {
-        if (err) done.fail(err);
+    describe('components rendered', () => {
+      beforeEach(done => {
+        browser.clickLink(agent.partners[0].name, err => {
+          if (err) return done.fail(err);
+          browser.assert.success(); 
+          done();
+        });
+      });
+
+      it('correctly renders the partner info an component fields', () => {
         browser.assert.text('article.partner header h1', agent.partners[0].name);
         browser.assert.link('article.partner header h2 a', agent.partners[0].email, `mailto:${agent.partners[0].email}`);
         browser.assert.element('#notes');
         browser.assert.element('#prayers');
         browser.assert.element('#donations');
         browser.assert.element('#thank-yous');
-        done();
+      });
+
+      it('displays one note, a form, and a link to more notes', () => {
+        browser.assert.elements('#notes .note', 1);
+        browser.assert.attribute('#notes form', 'action', '/note');
+        browser.assert.link('#notes a', 'More notes...', '/note');
       });
     });
   });

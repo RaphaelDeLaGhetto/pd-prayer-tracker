@@ -7,9 +7,19 @@
       <h2><a href="mailto:<%= partner.email %>"><%= partner.email %></h2>
     </header>
     <details>
-      <summary id="notes">Notes</summary>
-      <section>
-        Put notes in here
+      <summary>Notes</summary>
+      <section id="notes">
+        <% if (partner.notes.length) { %>
+          <%- include('../note/note', { note: partner.notes[0] }) %>
+        <% } %>
+        <a href="/note">More notes...</a>
+        <form id="new-note-form" role="form" action="/note" method="post">
+          <div class="form-group">
+            <label for="notes">New note:</label>
+            <textarea rows="2" name="text"></textarea>
+          </div>
+          <input type="submit" value="Take note">
+        </form>
       </section>
     </details>
     <details>
