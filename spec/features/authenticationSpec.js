@@ -117,10 +117,6 @@ describe('authentication', () => {
       });
     });
 
-    it('populates the email field in login', (done) => {
-      done.fail();
-    });
-
     it('displays the login form', () => {
       browser.assert.element("form[action='/login']");
     });
@@ -148,10 +144,6 @@ describe('authentication', () => {
         browser.assert.success();
         done();
       });
-    });
-
-    it('populates the email field in login', (done) => {
-      done.fail();
     });
 
     it('displays the login form', () => {

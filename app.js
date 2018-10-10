@@ -26,7 +26,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
-
 /**
  * Flash
  */
@@ -112,6 +111,5 @@ let port = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'to
 app.listen(port, '0.0.0.0', () => {
   console.log('prayer-chain listening on ' + port + '!');
 });
-
 
 module.exports = app;
