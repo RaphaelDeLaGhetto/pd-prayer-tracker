@@ -38,18 +38,16 @@ router.get('/:id', (req, res) => {
     return res.redirect('/');
   }
 
-  models.Agent.findById(req.user._id).then(agent => {
-    const partner = agent.partners.id(req.params.id);
-
-    if (!partner) {
-      req.flash('error', 'That partner does not exist');
-      return res.redirect('/');
-    }
-
-    res.render('partner/show', { agent: agent, partner: partner, messages: req.flash() });
-  }).catch(err => {
-    res.status(400).send(err);
+  const partner = req.user.partners.find(partner => {
+    return partner._id.toString() === req.params.id;
   });
+
+  if (!partner) {
+    req.flash('error', 'That partner does not exist');
+    return res.redirect('/');
+  }
+
+  res.render('partner/show', { agent: req.user, partner: partner, messages: req.flash() });
 });
 
 module.exports = router;
