@@ -1,6 +1,35 @@
 <% include ../_partials/header %>
   <% include ../_partials/messages %>
 
-  <% include partner %>
+  <article class="partner">
+    <header>
+      <h1><%= partner.name %></a></h1>
+      <h2><a href="mailto:<%= partner.email %>"><%= partner.email %></h2>
+    </header>
+    <details>
+      <summary id="notes">Notes</summary>
+      <section>
+        Put notes in here
+      </section>
+    </details>
+    <details>
+      <summary id="prayers">Prayers</summary>
+      <section>
+        Put prayers in here
+      </section>
+    </details>
+    <details>
+      <summary id="thank-yous">Thank Yous</summary>
+      <section>
+        Put thank yous in here
+      </section>
+    </details>
+    <details>
+      <summary id="donations">Donations</summary>
+      <section>
+        Put donations in here
+      </section>
+    </details>
+  </article>
 
 <% include ../_partials/footer %>

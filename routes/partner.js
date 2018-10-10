@@ -42,8 +42,8 @@ router.get('/:id', (req, res) => {
     const partner = agent.partners.id(req.params.id);
 
     if (!partner) {
-      req.flash('error', 'No partner with that ID');
-      res.status(404);
+      req.flash('error', 'That partner does not exist');
+      return res.redirect('/');
     }
 
     res.render('partner/show', { agent: agent, partner: partner, messages: req.flash() });

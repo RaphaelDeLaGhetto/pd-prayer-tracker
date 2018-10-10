@@ -3,7 +3,6 @@
   
   <% if (!agent) { %>
     <% include _partials/login %>
-
   <% } else { %>
     <% if (agent.partners.length) { %>
       <form id="new-partner-form" role="form" action="/partner" method="post">
