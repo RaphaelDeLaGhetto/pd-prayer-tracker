@@ -116,6 +116,14 @@ describe("GET '/partner/:id'", () => {
         browser.assert.attribute('#notes form', 'action', '/note');
         browser.assert.link('#notes a', 'More notes...', '/note');
       });
+
+      it('displays one prayer, a form, and a link to more prayers', () => {
+        browser.assert.elements('#prayers .prayer', 1);
+        browser.assert.attribute('#prayers form', 'action', '/prayer');
+        browser.assert.link('#prayers a', 'More prayers...', '/prayer');
+      });
+
+
     });
   });
 });

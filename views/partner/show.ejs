@@ -23,9 +23,19 @@
       </section>
     </details>
     <details>
-      <summary id="prayers">Prayers</summary>
-      <section>
-        Put prayers in here
+      <summary>Prayers</summary>
+      <section id="prayers">
+        <% if (partner.prayers.length) { %>
+          <%- include('../prayer/prayer', { prayer: partner.prayers[0] }) %>
+        <% } %>
+        <a href="/prayer">More prayers...</a>
+        <form id="new-prayer-form" role="form" action="/prayer" method="post">
+          <div class="form-group">
+            <label for="prayer">New prayer:</label>
+            <textarea rows="2" name="text"></textarea>
+          </div>
+          <input type="submit" value="New prayer">
+        </form>
       </section>
     </details>
     <details>
