@@ -34,20 +34,40 @@
             <label for="prayer">New prayer:</label>
             <textarea rows="2" name="text"></textarea>
           </div>
-          <input type="submit" value="New prayer">
+          <input type="submit" value="Add">
         </form>
       </section>
     </details>
     <details>
-      <summary id="thank-yous">Thank Yous</summary>
-      <section>
-        Put thank yous in here
+      <summary>Thank Yous</summary>
+      <section id="thank-yous">
+        <% if (partner.thankYous.length) { %>
+          <%- include('../thankyou/thankyou', { thankYou: partner.thankYous[0] }) %>
+        <% } %>
+        <a href="/thankyou">More thank yous...</a>
+        <form id="new-thank-you-form" role="form" action="/thankyou" method="post">
+          <div class="form-group">
+            <label for="prayer">New thank you:</label>
+            <textarea rows="2" name="text"></textarea>
+          </div>
+          <input type="submit" value="Add">
+        </form>
       </section>
     </details>
     <details>
-      <summary id="donations">Donations</summary>
-      <section>
-        Put donations in here
+      <summary>Donations</summary>
+      <section id="donations">
+        <% if (partner.donations.length) { %>
+          <%- include('../donation/donation', { donation: partner.donations[0] }) %>
+        <% } %>
+        <a href="/donation">More donations...</a>
+        <form id="new-donation-form" role="form" action="/donation" method="post">
+          <div class="form-group">
+            <label for="donation">New donation:</label>
+            <textarea rows="2" name="text"></textarea>
+          </div>
+          <input type="submit" value="Add">
+        </form>
       </section>
     </details>
   </article>

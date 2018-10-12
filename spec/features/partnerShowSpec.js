@@ -123,7 +123,17 @@ describe("GET '/partner/:id'", () => {
         browser.assert.link('#prayers a', 'More prayers...', '/prayer');
       });
 
+      it('displays last donation, a form, and a link to more donations', () => {
+        browser.assert.elements('#donations .donation', 1);
+        browser.assert.attribute('#donations form', 'action', '/donation');
+        browser.assert.link('#donations a', 'More donations...', '/donation');
+      });
 
+      it('displays last thank you, a form, and a link to more thank yous', () => {
+        browser.assert.elements('#thank-yous .thank-you', 1);
+        browser.assert.attribute('#thank-yous form', 'action', '/thankyou');
+        browser.assert.link('#thank-yous a', 'More thank yous...', '/thankyou');
+      });
     });
   });
 });

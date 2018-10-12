@@ -9,7 +9,9 @@ exports.Partner = {
     email: 'horst@example.com',
     name: 'Pastor Horst',
     notes: [{ text: 'Note 1' }, { text: 'Note 2' }, { text: 'Note 3' }, { text: 'Note 4' }],
-    prayers: [{ text: 'Prayer 1' }, { text: 'Prayer 2' }, { text: 'Prayer 3' }, { text: 'Prayer 4' }]
+    prayers: [{ text: 'Prayer 1' }, { text: 'Prayer 2' }, { text: 'Prayer 3' }, { text: 'Prayer 4' }],
+    thankYous: [{ mode: 'Email' }, { mode: 'Snail Mail' }, { mode: 'In Person' }, { mode: 'Phone' }],
+    donations: [{ amount: '$200' }, { amount: '$100' }, { amount: '$50' }, { amount: '$25' }],
   },
   ben: {
     _id: new ObjectId(),

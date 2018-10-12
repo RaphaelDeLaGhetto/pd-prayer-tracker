@@ -22,12 +22,5 @@ module.exports = function(mongoose) {
     timestamps: true
   });
 
-  /**
-   * Get formatted currency string
-   */
-  ThankYouSchema.methods.formatAmount = function() {
-    return (this.amount / 100).toFixed(2);
-  };
-
   return ThankYouSchema;
 };
