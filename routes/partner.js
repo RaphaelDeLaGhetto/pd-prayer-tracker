@@ -45,7 +45,10 @@ router.get('/:id', (req, res) => {
     return res.redirect('/');
   }
 
-  res.render('partner/show', { agent: req.user, partner: partner, messages: req.flash() });
+  res.render('partner/show', { agent: req.user,
+                               partner: partner,
+                               modesOfThanks: models.ThankYou.schema.path('mode').enumValues,
+                               messages: req.flash() });
 });
 
 module.exports = router;

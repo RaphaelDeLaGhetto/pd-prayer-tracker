@@ -47,8 +47,12 @@
         <a href="/thankyou">More thank yous...</a>
         <form id="new-thank-you-form" role="form" action="/thankyou" method="post">
           <div class="form-group">
-            <label for="prayer">New thank you:</label>
-            <textarea rows="2" name="text"></textarea>
+            <label for="mode">Mode of thank you:</label>
+            <select class="form-control" name="mode">
+              <% for (const mode of modesOfThanks) { %>
+                <option value="<%= mode %>"><%= mode %></option>
+              <% } %>
+            </select>
           </div>
           <input type="submit" value="Add">
         </form>

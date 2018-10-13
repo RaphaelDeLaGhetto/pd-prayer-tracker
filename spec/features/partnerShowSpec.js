@@ -132,6 +132,10 @@ describe("GET '/partner/:id'", () => {
       it('displays last thank you, a form, and a link to more thank yous', () => {
         browser.assert.elements('#thank-yous .thank-you', 1);
         browser.assert.attribute('#thank-yous form', 'action', '/thankyou');
+        browser.assert.element('#thank-yous form select[name=mode]');
+        for (const mode of models.ThankYou.schema.path('mode').enumValues ) {
+          browser.assert.element(`select[name=mode] option[value="${mode}"]`);
+        }
         browser.assert.link('#thank-yous a', 'More thank yous...', '/thankyou');
       });
     });
