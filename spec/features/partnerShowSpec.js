@@ -117,16 +117,40 @@ describe("GET '/partner/:id'", () => {
         browser.assert.link('#notes a', 'More notes...', '/note');
       });
 
+      it('links to the notes show view', done => {
+        browser.clickLink('More notes...', err => {
+          if (err) return done.fail(err);
+          browser.assert.success(); 
+          done();
+        });
+      });
+
       it('displays one prayer, a form, and a link to more prayers', () => {
         browser.assert.elements('#prayers .prayer', 1);
         browser.assert.attribute('#prayers form', 'action', '/prayer');
         browser.assert.link('#prayers a', 'More prayers...', '/prayer');
       });
 
+      it('links to the prayer show view', done => {
+        browser.clickLink('More prayers...', err => {
+          if (err) return done.fail(err);
+          browser.assert.success(); 
+          done();
+        });
+      });
+
       it('displays last donation, a form, and a link to more donations', () => {
         browser.assert.elements('#donations .donation', 1);
         browser.assert.attribute('#donations form', 'action', '/donation');
         browser.assert.link('#donations a', 'More donations...', '/donation');
+      });
+
+      it('links to the donation show view', (done) => {
+        browser.clickLink('More donations...', err => {
+          if (err) return done.fail(err);
+          browser.assert.success(); 
+          done();
+        });
       });
 
       it('displays last thank you, a form, and a link to more thank yous', () => {
@@ -137,6 +161,14 @@ describe("GET '/partner/:id'", () => {
           browser.assert.element(`select[name=mode] option[value="${mode}"]`);
         }
         browser.assert.link('#thank-yous a', 'More thank yous...', '/thankyou');
+      });
+
+      it('links to the Thank You show view', (done) => {
+        browser.clickLink('More thank yous...', err => {
+          if (err) return done.fail(err);
+          browser.assert.success(); 
+          done();
+        });
       });
     });
   });
