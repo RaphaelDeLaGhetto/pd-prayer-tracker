@@ -106,6 +106,7 @@ app.use('/partner', require('./routes/partner'));
 app.use('/note', require('./routes/note'));
 app.use('/prayer', require('./routes/prayer'));
 app.use('/donation', require('./routes/donation'));
+app.use('/thankYou', require('./routes/thankYou'));
 
 /**
  * Start server

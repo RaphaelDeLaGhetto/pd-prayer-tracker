@@ -42,10 +42,10 @@
       <summary>Thank Yous</summary>
       <section id="thank-yous">
         <% if (partner.thankYous.length) { %>
-          <%- include('../thankyou/thankyou', { thankYou: partner.thankYous[0] }) %>
+          <%- include('../thankYou/thankYou', { thankYou: partner.thankYous[0] }) %>
         <% } %>
-        <a href="/thankyou">More thank yous...</a>
-        <form id="new-thank-you-form" role="form" action="/thankyou" method="post">
+        <a href="/thankYou">More thank yous...</a>
+        <form id="new-thank-you-form" role="form" action="/thankYou" method="post">
           <div class="form-group">
             <label for="mode">Mode of thank you:</label>
             <select class="form-control" name="mode">
