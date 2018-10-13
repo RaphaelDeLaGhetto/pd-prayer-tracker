@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     return res.redirect('/');
   }
 
-  res.render('note/show', { agent: req.user, messages: req.flash() });
+  res.render('note/index', { agent: req.user, messages: req.flash() });
 });
 
 module.exports = router;
