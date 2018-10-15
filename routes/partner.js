@@ -51,4 +51,62 @@ router.get('/:id', (req, res) => {
                                messages: req.flash() });
 });
 
+
+/**
+ * GET /partner/:id/edit
+ */
+router.get('/:id/edit', (req, res) => {
+  if (!req.isAuthenticated()) { 
+    req.flash('info', 'Login first');
+    return res.redirect('/');
+  }
+
+  const partner = req.user.partners.find(partner => partner._id.toString() === req.params.id);
+
+  if (!partner) {
+    req.flash('error', 'You have no such partner');
+    return res.redirect('/');
+  }
+
+  res.render('partner/edit', { agent: req.user,
+                               partner: partner,
+                               messages: req.flash() });
+});
+
+/**
+ * PUT /partner/:id
+ */
+router.put('/:id', (req, res) => {
+  if (!req.isAuthenticated()) { 
+    req.flash('info', 'Login first');
+    return res.redirect('/');
+  }
+
+  const partner = req.user.partners.find(partner => partner._id.toString() === req.params.id);
+
+  if (!partner) {
+    req.flash('error', 'You are unauthorized');
+    return res.status(401).send('You are unauthorized');
+  }
+
+  for (const param in req.body) {
+    if (req.body[param].trim()) {
+      partner[param] = req.body[param];
+    }
+  }
+
+  req.user.save(req.body).then(results => {
+    req.flash('success', 'Update successful');
+    res.redirect(`/partner/${partner._id}`);
+  }).catch(err => {
+    let messages = { error: [] };
+    for (const msg in err.errors) {
+      messages.error.push(err.errors[msg]);
+    }
+    res.render('partner/edit', { agent: req.user,
+                                 partner: partner,
+                                 messages: messages });
+  });
+});
+
 module.exports = router;

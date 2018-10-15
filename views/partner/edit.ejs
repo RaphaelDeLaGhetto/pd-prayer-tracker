@@ -1,0 +1,16 @@
+<% include ../_partials/header %>
+  <% include ../_partials/messages %>
+
+  <article class="partner">
+    <header>
+      <h1><%= partner.name %></h1>
+      <h2><%= partner.email %></h2>
+    </header>
+    <form id="edit-partner-form" role="form" action="/partner/<%= partner._id %>?_method=PUT" method="post">
+      <input type="text" name="name" placeholder="<%= partner.name %>">
+      <input type="email" name="email" placeholder="<%= partner.email %>">
+      <input type="submit" value="Update">
+    </form>
+  </article>
+
+<% include ../_partials/footer %>
