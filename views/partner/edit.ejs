@@ -11,6 +11,11 @@
       <input type="email" name="email" placeholder="<%= partner.email %>">
       <input type="submit" value="Update">
     </form>
+    <footer>
+      <form id="delete-partner-form" role="form" action="/partner/<%= partner._id %>?_method=DELETE" method="post">
+        <input type="submit" value="Delete">
+      </form>
+    </footer>
   </article>
 
 <% include ../_partials/footer %>

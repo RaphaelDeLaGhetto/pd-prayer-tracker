@@ -109,4 +109,37 @@ router.put('/:id', (req, res) => {
   });
 });
 
+/**
+ * DELETE /partner/:id
+ */
+router.delete('/:id', (req, res) => {
+  if (!req.isAuthenticated()) { 
+    return res.status(403).send();
+  }
+
+  const index = req.user.partners.findIndex(partner => partner._id.toString() === req.params.id);
+
+  if (index < 0) {
+    return res.status(401).send();
+  }
+
+  const oldEmail = req.user.partners[index].email;
+
+  req.user.partners.splice(index, 1);
+
+  req.user.save().then(results => {
+    req.flash('success', `${oldEmail} removed for eternity`);
+    res.redirect('/');
+  }).catch(err => {
+    let messages = { error: [] };
+    for (const msg in err.errors) {
+      messages.error.push(err.errors[msg]);
+    }
+    res.render('partner/edit', { agent: req.user,
+                                 partner: partner,
+                                 messages: messages });
+  });
+
+});
+
 module.exports = router;
