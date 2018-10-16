@@ -49,7 +49,19 @@ describe("GET '/partner/:id/edit'", () => {
         });
     });
 
-    
+    it('does not allow you to update a prayer partner', done => {
+      request(app)
+        .put('/partner/123')
+        .send({
+          email: 'newaddress@example.com',
+        })
+        .end((err, res) => {
+          if (err) return done.fail(err);
+          expect(res.status).toEqual(302); //redirected
+          done();
+        });
+    });
+
     it('redirects to home for login', done => {
       browser.visit('/partner/123/edit', err => {
         if (err) done.fail(err);
