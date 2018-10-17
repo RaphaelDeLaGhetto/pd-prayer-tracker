@@ -27,16 +27,10 @@
       <summary>Prayers</summary>
       <section id="prayers">
         <% if (partner.prayers.length) { %>
-          <%- include('../prayer/prayer', { prayer: partner.prayers[0] }) %>
+          <%- include('../prayer/prayer', { prayer: partner.prayers[0], partnerId: partner._id }) %>
         <% } %>
         <a href="/partner/<%= partner._id %>/prayer">More prayers...</a>
-        <form id="new-prayer-form" role="form" action="/partner/<%= partner._id %>/prayer" method="post">
-          <div class="form-group">
-            <label for="prayer">New prayer:</label>
-            <textarea rows="2" name="text"></textarea>
-          </div>
-          <input type="submit" value="Add">
-        </form>
+        <%- include('../prayer/form', { partner: partner }) %>
       </section>
     </details>
     <details>

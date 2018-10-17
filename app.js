@@ -104,7 +104,7 @@ app.use('/logout', require('./routes/logout'));
 app.use('/reset', require('./routes/reset'));
 
 const partnerRouter = require('./routes/partner');
-partnerRouter.use('/:id/prayer', require('./routes/prayer'));
+partnerRouter.use('/:partnerId/prayer', require('./routes/prayer'));
 app.use('/partner', partnerRouter);
 
 app.use('/note', require('./routes/note'));

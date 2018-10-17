@@ -1,4 +1,5 @@
-<div class="prayer">
-  <p class="date-time"><%= prayer.updatedAt %></p>
+<article class="prayer">
+  <p class="date-time"><%= prayer.createdAt %></p>
   <p><%= prayer.text %></p>
-</div>
+  <a href="/partner/<%= partnerId %>/prayer/<%= prayer._id %>">edit</a>
+</article>
