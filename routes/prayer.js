@@ -2,7 +2,7 @@
 
 const express = require('express');
 const passport = require('passport');
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 const models = require('../models');
 
 /**
@@ -16,5 +16,17 @@ router.get('/', (req, res) => {
 
   res.render('prayer/index', { agent: req.user, messages: req.flash() });
 });
+
+/**
+ * POST /prayer
+ */
+router.post('/', (req, res) => {
+  if (!req.isAuthenticated()) { 
+    return res.status(403).send();
+  }
+
+  res.render('prayer/index', { agent: req.user, messages: req.flash() });
+});
+
 
 module.exports = router;

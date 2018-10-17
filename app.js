@@ -102,9 +102,12 @@ app.use('/', require('./routes/index'));
 app.use('/login', require('./routes/login'));
 app.use('/logout', require('./routes/logout'));
 app.use('/reset', require('./routes/reset'));
-app.use('/partner', require('./routes/partner'));
+
+const partnerRouter = require('./routes/partner');
+partnerRouter.use('/:id/prayer', require('./routes/prayer'));
+app.use('/partner', partnerRouter);
+
 app.use('/note', require('./routes/note'));
-app.use('/prayer', require('./routes/prayer'));
 app.use('/donation', require('./routes/donation'));
 app.use('/thankYou', require('./routes/thankYou'));
 
