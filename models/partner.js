@@ -28,8 +28,13 @@ module.exports = function(mongoose) {
       empty: [false, 'No name supplied'],
     },
     donations: [Donation],
-    notes: [new Schema({ text: { type: Types.String, trim: true, required: [true, 'No text supplied'] }},
-           { timestamps: true })],
+    notes: [new Schema({ text: {
+                           type: Types.String,
+                           trim: true,
+                           required: [true, 'No note text supplied'],
+                           empty: [false, 'No note text supplied'] 
+                         }
+                       }, { timestamps: true })],
     prayers: [new Schema({ text: { 
                              type: Types.String,
                              trim: true,
@@ -37,8 +42,6 @@ module.exports = function(mongoose) {
                              empty: [false, 'No prayer text supplied'] 
                            }
                          }, { timestamps: true })],
-
-//    prayers: [new Schema({ text: Types.String}, { timestamps: true })],
     thankYous: [ThankYou]
   }, {
     timestamps: true
