@@ -29,8 +29,8 @@
         <% if (partner.prayers.length) { %>
           <%- include('../prayer/prayer', { prayer: partner.prayers[0] }) %>
         <% } %>
-        <a href="/prayer">More prayers...</a>
-        <form id="new-prayer-form" role="form" action="/prayer" method="post">
+        <a href="/partner/<%= partner._id %>/prayer">More prayers...</a>
+        <form id="new-prayer-form" role="form" action="/partner/<%= partner._id %>/prayer" method="post">
           <div class="form-group">
             <label for="prayer">New prayer:</label>
             <textarea rows="2" name="text"></textarea>

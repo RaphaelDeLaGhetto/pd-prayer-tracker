@@ -127,8 +127,8 @@ describe("GET '/partner/:id'", () => {
 
       it('displays one prayer, a form, and a link to more prayers', () => {
         browser.assert.elements('#prayers .prayer', 1);
-        browser.assert.attribute('#prayers form', 'action', '/prayer');
-        browser.assert.link('#prayers a', 'More prayers...', '/prayer');
+        browser.assert.attribute('#prayers form', 'action', `/partner/${agent.partners[0]._id}/prayer`);
+        browser.assert.link('#prayers a', 'More prayers...', `/partner/${agent.partners[0]._id}/prayer`);
       });
 
       it('links to the prayer show view', done => {
